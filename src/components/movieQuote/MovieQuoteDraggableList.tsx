@@ -70,8 +70,12 @@ export const MovieQuoteDraggableList = ({
         data={data}
         keyExtractor={i => i.id}
         renderItem={renderItem}
-        onDragEnd={({data, from, to}) => {
-          setData(data);
+        onDragEnd={props => {
+          if (props.to === 0 && data[0].isFavorite) {
+            // disable ability to move a non favorite item to top of list
+          } else {
+            setData(props.data);
+          }
         }}
       />
     </>
